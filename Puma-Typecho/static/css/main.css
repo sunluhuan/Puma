@@ -413,10 +413,24 @@ input[disabled] {
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
 }
-.postFooterinfo .avatar {
+.postFooterinfo img {
   border-radius: 100%;
   padding: 4px;
   border: 1px rgba(0, 0, 0, 0.05) solid;
+}
+.post-tags {
+  margin: 20px 0;
+}
+.post-tags a {
+  background-color: rgba(255, 255, 255, 0.97);
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.44);
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  padding: 2px 9px;
 }
 .postFooterAction {
   padding: 20px 0;
@@ -444,24 +458,28 @@ input[disabled] {
   width: 100%;
   padding: 10px;
 }
-.commentlist .comment {
-  padding: 10px 0;
+.comment-list .comment-body {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-.commentlist .comment .comment-author .avatar {
+.comment-list .comment-body .comment-author {
+  font-size: 14px;
+}
+.comment-list .comment-body .comment-author .fn {
+  font-weight: 700;
+}
+.comment-list .comment-body .comment-author .avatar {
   float: left;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
 }
-.commentlist .children {
+.comment-list .comment-children {
   margin-left: 50px;
 }
-.commentlist .depth-2 .children {
+.comment-list .depth-2 .children {
   margin-left: 0;
-}
-.comment-body {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 .comment-meta {
   overflow: hidden;
@@ -473,10 +491,11 @@ input[disabled] {
 .comment-content {
   margin-top: 10px;
 }
-.reply {
+.comment-reply {
   text-align: right;
+  margin-bottom: 15px;
 }
-.reply .comment-reply-link {
+.comment-reply a {
   background-color: #3b5998;
   color: #fff;
   font-size: 12px;
@@ -536,7 +555,11 @@ input[disabled] {
   font-size: 12px;
   padding: 2px 6px;
 }
-.nav-links .page-numbers {
+.page-navigator {
+  text-align: center;
+  padding: 20px 0;
+}
+.page-navigator li {
   border: 1px rgba(0, 0, 0, 0.15) solid;
   display: inline-block;
   padding: 1px 10px;
@@ -544,10 +567,13 @@ input[disabled] {
   border-radius: 3px;
   color: rgba(0, 0, 0, 0.44);
 }
-.nav-links .page-numbers.current,
-.nav-links .page-numbers:hover {
+.page-navigator li.current,
+.page-navigator li:hover {
   background-color: #3b5998;
   color: #fff;
+}
+.page-navigator li a {
+  display: block;
 }
 .page404 {
   padding: 200px 0;

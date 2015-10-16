@@ -4,7 +4,7 @@
  *
  * @package Puma
  * @author Bigfa
- * @version 1.0.0
+ * @version 1.0.1
  * @link http://fatesinger.com
  */
 
@@ -32,7 +32,7 @@ $this->need('header.php');
             </article>
         <?php endwhile; ?>
     </section>
-    <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+    <?php $this->pageNav('<', '>'); ?>
 </main><!-- end #main-->
 
 
