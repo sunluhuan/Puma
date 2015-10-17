@@ -1,8 +1,11 @@
-# Puma
+## 更新日志
 
-A Ghost theme.
+### 1.0.1
 
-please visit the [releases](https://fatesinger.com/76523) page.
++ 修正评论样式
++ 修正文章标签样式
++ 修正文章翻页导航样式
+
 
 ## Buy me a cup of coffee or 10
 
