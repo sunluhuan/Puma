@@ -9,6 +9,9 @@
                     </div>
                 </header>
                 <div class="grap">
+                <?php if(has_post_thumbnail()):?>
+            <p class="with-img"><?php the_post_thumbnail( 'full' ); ?></p>  
+        <?php endif;?>
                     <?php the_content();?>
                 </div>
                 <div class="postFooterAction">

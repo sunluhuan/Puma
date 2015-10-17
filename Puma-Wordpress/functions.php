@@ -1,8 +1,9 @@
 <?php
 
+
 require get_template_directory() . '/ajax-comment/do.php';
 function pure_setup() {
-    register_nav_menu( 'angela', 'Angela菜单' );
+    register_nav_menu( 'angela', '主题菜单' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'html5', array(
         'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'

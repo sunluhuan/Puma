@@ -8,8 +8,11 @@
     <div class="block-snippet block-snippet--subtitle grap" itemprop="about">
         <?php if(has_post_thumbnail()):?>
             <p class="with-img"><?php the_post_thumbnail( 'full' ); ?></p>
+            <p><?php echo mb_strimwidth(strip_shortcodes(strip_tags(apply_filters('the_content', $post->post_content))), 0, 220,"...");?></p>
+        <?php else : ?>
+        <?php the_content('');?>    
         <?php endif;?>
-        <?php the_content('');?>
+        
     </div>
     <div class="block-footer">
         By <?php the_author();?> . In <?php the_category(',');?>.
