@@ -18,6 +18,6 @@ if ( post_password_required() )
         <div class="commentnavholder v-textAlignCenter"><?php echo get_loadmorecomment_button(); ?></div>
     <?php endif; ?>
     <?php if(comments_open()) : ?>
-        <?php comment_form();?>
+        <?php comment_form(array('comment_notes_after'=>''));?>
     <?php endif; ?>
 </div>

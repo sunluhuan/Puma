@@ -17,6 +17,10 @@
             <p class="site-description"><?php echo $description; ?></p>
         <?php endif;
         ?>
+        <div class="social-links">
+          <?php echo header_social_link();?>
+
+        </div>
     </header>
     <nav class="topNav u-textAlignCenter">
         <div class="layoutSingleColumn">
