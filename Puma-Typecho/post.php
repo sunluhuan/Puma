@@ -16,6 +16,20 @@
             <?php $this->author->gravatar(60); ?>
             <h3 class="author-name"><?php $this->author() ?></h3>
             <div class="author-description">作者描述</div>
+            <div class="author-meta">
+    <span class="author-meta-item">
+<svg class="icon icon-instagram" viewBox="0 0 14 14" width="14" height="14">
+    <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-location">
+</svg>
+Shenzhen
+</span>
+<span class="author-meta-item">
+<svg class="icon icon-twitter" viewBox="0 0 14 14" width="14" height="14">
+    <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-link">
+</svg>
+<a href="http://fatesinger.com">http://fatesinger.com</a>
+</span>
+            </div>
         </div>
     </section>
     <?php $this->need('comments.php'); ?>

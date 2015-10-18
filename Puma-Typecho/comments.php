@@ -3,9 +3,9 @@
     <?php $this->comments()->to($comments); ?>
     <?php if ($comments->have()): ?>
 	<h3 class="comments-title"><?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
-    
+    <div class="comment-list-wrap">
     <?php $comments->listComments(); ?>
-
+    </div>
     <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
     
     <?php endif; ?>
@@ -22,11 +22,11 @@
     		<p><?php _e('登录身份: '); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
             <?php else: ?>
     		<p class="comment-form-author">
-                <label for="author" class="required"><?php _e('称呼'); ?></label>
+            <label for="author"><?php _e('称呼'); ?> <span class="required">*</span></label>
     			<input type="text" name="author" id="author" class="text" value="<?php $this->remember('author'); ?>" required />
     		</p>
     		<p class="comment-form-email">
-                <label for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php _e('Email'); ?></label>
+                <label for="mail"><?php _e('Email'); ?> <span class="required">*</span></label>
     			<input type="email" name="mail" id="mail" class="text" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
     		</p>
     		<p class="comment-form-url">
@@ -35,7 +35,7 @@
     		</p>
             <?php endif; ?>
     		<p class="comment-form-comment">
-                <label for="textarea" class="required"><?php _e('内容'); ?></label>
+                <label for="textarea"><?php _e('内容'); ?></label>
                 <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ><?php $this->remember('text'); ?></textarea>
             </p>
     		<p class="form-submit">

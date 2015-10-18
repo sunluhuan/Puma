@@ -11,12 +11,6 @@
         <div class="grap" itemprop="articleBody">
             <?php $this->content(); ?>
         </div>
-        <p itemprop="keywords" class="tags"><?php _e('标签: '); ?><?php $this->tags(', ', true, 'none'); ?></p>
-        <div class="postFooterinfo u-textAlignCenter">
-            <?php $this->author->gravatar(60); ?>
-            <h3 class="author-name"><?php $this->author() ?></h3>
-            <div class="author-description">作者描述</div>
-        </div>
     </section>
     <?php $this->need('comments.php'); ?>
 </main><!-- end #main-->

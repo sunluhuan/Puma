@@ -4,7 +4,7 @@
  *
  * @package Puma
  * @author Bigfa
- * @version 1.0.1
+ * @version 1.0.2
  * @link http://fatesinger.com
  */
 
@@ -27,7 +27,7 @@ $this->need('header.php');
                 </div>
                 <div class="block-footer">
                     By <a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a> . In <?php $this->category(','); ?> .
-                    <div class="block-footer-inner"> 0 likes . <?php $this->commentsNum('No relay', '1 reply', '%d replies'); ?>. </div>
+                    <div class="block-footer-inner"><?php $this->commentsNum('No relay', '1 reply', '%d replies'); ?>. </div>
                 </div>
             </article>
         <?php endwhile; ?>

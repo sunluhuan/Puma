@@ -32,6 +32,36 @@
             <a title="" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
         </h1>
         <p class="site-description"><?php $this->options->description() ?></p>
+        <div class="social-links">
+        <span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-twitter">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-instagram">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-sina-weibo">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="<?php $this->options->siteUrl(); ?>/feed">
+    <svg class="icon icon-feed2" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="<?php $this->options->themeUrl('/static/img/svgdefs.svg'); ?>#icon-feed2">
+    </svg>
+</a>
+</span>
+        </div>
     </header>
     <nav id="nav-menu" class="topNav u-textAlignCenter" role="navigation">
         <ul id="menu-%e8%8f%9c%e5%8d%951" class="topNav-items">
