@@ -24,7 +24,7 @@
             <div class="post-tags">
                 {{tags prefix=""}}
             </div>
-            <div class="postFooterinfo u-textAlignCenter">
+            <div class="author-profile u-textAlignCenter">
 
                 {{! Everything inside the #author tags pulls data from the author }}
                 {{#author}}
@@ -41,8 +41,8 @@
                         <p class="author-description">{{bio}}</p>
                     {{/if}}
                     <div class="author-meta">
-                        {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-                        {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+                        {{#if location}}<span class="author-meta-item"><svg class="icon icon-instagram" height="14" width="14" viewBox="0 0 14 14"><use xlink:href="{{asset "img/svgdefs.svg"}}#icon-location"></use></svg>{{location}}</span>{{/if}}
+                        {{#if website}} <span class="author-meta-item"><svg class="icon icon-twitter" height="14" width="14" viewBox="0 0 14 14"><use xlink:href="{{asset "img/svgdefs.svg"}}#icon-link"></use></svg><a href="{{website}}">{{website}}</a></span>{{/if}}
                     </div>
 
                 {{/author}}

@@ -27,12 +27,42 @@
             <a title="" href="{{@blog.url}}">{{@blog.title}}</a>
         </h1>
         <p class="site-description">{{@blog.description}}</p>
+        <div class="social-links">
+<span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon icon-twitter" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="{{asset "img/svgdefs.svg"}}#icon-twitter">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon icon-sina-weibo" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="{{asset "img/svgdefs.svg"}}#icon-sina-weibo">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="#">
+    <svg class="icon icon-instagram" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="{{asset "img/svgdefs.svg"}}#icon-instagram">
+    </svg>
+</a>
+</span>
+<span class="social-link">
+<a target="_blank" href="{{@blog.url}}/rss/">
+    <svg class="icon icon-feed2" viewBox="0 0 16 16" width="16" height="16">
+        <use xlink:href="{{asset "img/svgdefs.svg"}}#icon-feed2">
+    </svg>
+</a>
+</span>
+        </div>
     </header>
     {{navigation}}
     {{! Everything else gets inserted here }}
     {{{body}}}
     <footer class="site-footer u-textAlignCenter">
-        Puma by <a href="https://fatesinger.com">bigfa</a>. Blog since 2015.
+        Puma by <a href="https://fatesinger.com">bigfa</a>. <svg class="icon icon-heart" height="12" width="12" viewBox="0 0 12 12"><use xlink:href="{{asset "img/svgdefs.svg"}}#icon-heart"></use></svg> Blog since 2015.
     </footer>
 </div>
 
