@@ -14,9 +14,7 @@ if ( post_password_required() )
         ) );
         ?>
     </ol>
-    <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-        <div class="commentnavholder v-textAlignCenter"><?php echo get_loadmorecomment_button(); ?></div>
-    <?php endif; ?>
+    <?php puma_comment_nav(); ?>
     <?php if(comments_open()) : ?>
         <?php comment_form(array('comment_notes_after'=>''));?>
     <?php endif; ?>

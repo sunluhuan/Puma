@@ -250,3 +250,24 @@ function ajax_comment_err($a) {
     echo $a;
     exit;
 }
+
+function puma_comment_nav() {
+    // Are there comments to navigate through?
+    if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+    ?>
+    <nav class="navigation comment-navigation u-textAlignCenter" role="navigation">
+        <div class="nav-links">
+            <?php
+                if ( $prev_link = get_previous_comments_link(  '上一页' ) ) :
+                    printf( '<div class="nav-previous">%s</div>', $prev_link );
+                endif;
+
+                if ( $next_link = get_next_comments_link( '下一页' ) ) :
+                    printf( '<div class="nav-next">%s</div>', $next_link );
+                endif;
+            ?>
+        </div><!-- .nav-links -->
+    </nav><!-- .comment-navigation -->
+    <?php
+    endif;
+}
