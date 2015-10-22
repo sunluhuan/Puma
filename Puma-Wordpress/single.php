@@ -12,17 +12,16 @@
                     <?php if(has_post_thumbnail()):?>
                         <p class="with-img"><?php the_post_thumbnail( 'full' ); ?></p>
                     <?php endif;?>
-                    <?php the_content();
-                    wp_link_pages( array(
+                    <?php the_content();?>
+                </div>
+                <?php wp_link_pages( array(
                         'before'      => '<div class="page-links u-textAlignCenter comment-navigation">',
                         'after'       => '</div>',
                         'link_before' => '<span class="page-link-item">',
                         'link_after'  => '</span>',
                         'pagelink'    => '%',
                         'separator'   => '<span class="screen-reader-text">, </span>',
-                    ) );
-                    ?>
-                </div>
+                    ) );?>
                 <div class="post--keywords" itemprop="keywords">
                     <?php echo fa_get_the_term_list( get_the_ID(), 'post_tag' );?>
                 </div>
