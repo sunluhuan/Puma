@@ -11,10 +11,7 @@
             endif;?>
         </section>
         <nav class="posts-nav u-textAlignCenter">
-            <?php the_posts_pagination( array(
-                'prev_next'          =>  0,
-                'before_page_number' => '',
-            ) );?>
+            <?php echo fa_load_postlist_button();?>
         </nav>
     </main>
 <?php get_footer();?>
