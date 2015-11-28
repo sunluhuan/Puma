@@ -277,7 +277,7 @@ function fa_load_postlist_button(){
     if (2 > $GLOBALS["wp_query"]->max_num_pages) {
         return;
     } else {
-        $button = '<button id="fa-loadmore" class="button button--primary"';
+        $button = '<button id="fa-loadmore" class="button button--primary button--more"';
         if (is_category()) $button .= ' data-category="' . get_query_var('cat') . '"';
 
         if (is_author()) $button .=  ' data-author="' . get_query_var('author') . '"';
@@ -288,7 +288,7 @@ function fa_load_postlist_button(){
 
         if (is_date() ) $button .=  ' data-year="' . get_query_var('year') . '" data-month="' . get_query_var('monthnum') . '" data-day="' . get_query_var('day') . '"';
 
-        $button .= ' data-paged="2" data-action="fa_load_postlist" data-total="' . $GLOBALS["wp_query"]->max_num_pages . '">加载更多</button>';
+        $button .= ' data-paged="2" data-action="fa_load_postlist" data-total="' . $GLOBALS["wp_query"]->max_num_pages . '">load more</button>';
 
         return $button;
     }
