@@ -1,54 +1,70 @@
 <?php
-
-
-function pure_setup() {
+define('PUMA_VERSION','1.1.4');
+function puma_setup() {
     register_nav_menu( 'angela', '主题菜单' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'html5', array(
         'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
     ) );
+    add_theme_support( 'post-formats', array(
+        'image',
+        'status',
+    ) );
 }
 
-add_action( 'after_setup_theme', 'pure_setup' );
+add_action( 'after_setup_theme', 'puma_setup' );
 
-function cheetah_load_static_files(){
-	$dir = get_template_directory_uri() . '/static/';
-	wp_enqueue_style('puma', $dir . 'css/main.css' , array(), '20150726' , 'screen');
-    wp_enqueue_script( 'puma', $dir . 'js/main.js' , array( 'jquery' ), '20141010', true );
+function my_admin_notice(){
+
+    echo '<div class="updated">
+
+       <p>I am a little yellow notice.</p>
+
+    </div>';
+
+}
+
+add_action('admin_notices', 'my_admin_notice');
+
+
+function puma_load_static_files(){
+    $dir = get_template_directory_uri() . '/static/';
+    wp_enqueue_style('puma', $dir . 'css/main.css' , array(), PUMA_VERSION , 'screen');
+    wp_enqueue_script( 'puma', $dir . 'js/main.js' , array( 'jquery' ), PUMA_VERSION , true );
     wp_localize_script( 'puma', 'PUMA', array(
         'ajax_url'   => admin_url('admin-ajax.php')
     ) );
 }
 
-add_action( 'wp_enqueue_scripts', 'cheetah_load_static_files' );
+add_action( 'wp_enqueue_scripts', 'puma_load_static_files' );
 
-function twentythirteen_wp_title( $title, $sep ) {
-	global $paged, $page;
+function puma_wp_title( $title, $sep ) {
+    global $paged, $page;
 
-	if ( is_feed() )
-		return $title;
+    if ( is_feed() )
+        return $title;
 
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
+    // Add the site name.
+    $title .= get_bloginfo( 'name', 'display' );
 
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
+    // Add the site description for the home/front page.
+    $site_description = get_bloginfo( 'description', 'display' );
+    if ( $site_description && ( is_home() || is_front_page() ) )
+        $title = "$title $sep $site_description";
 
-	// Add a page number if necessary.
-	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'twentythirteen' ), max( $paged, $page ) );
+    // Add a page number if necessary.
+    if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
+        $title = "$title $sep " . sprintf( 'Page %s', max( $paged, $page ) );
 
-	return $title;
+    return $title;
 }
-add_filter( 'wp_title', 'twentythirteen_wp_title', 10, 2 );
+add_filter( 'wp_title', 'puma_wp_title', 10, 2 );
 
-function get_ssl_avatar($avatar) {
+function puma_get_ssl_avatar($avatar) {
     $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cn.gravatar.com", $avatar);
     return $avatar;
 }
-add_filter('get_avatar', 'get_ssl_avatar');
+add_filter('get_avatar', 'puma_get_ssl_avatar');
 
 function link_to_menu_editor( $args )
 {
@@ -103,7 +119,7 @@ function fa_get_the_term_list( $id, $taxonomy ) {
     return $term_links;
 }
 
-function add_remove_contactmethods( $contactmethods ) {
+function puma_add_remove_contactmethods( $contactmethods ) {
     // Add Twitter
     $contactmethods['twitter'] = 'Twitter';
     //Add Facebook
@@ -112,14 +128,14 @@ function add_remove_contactmethods( $contactmethods ) {
     $contactmethods['location'] = '位置';
 
     $contactmethods['instagram'] = 'Instagram';
- // Remove Contact Methods
+    // Remove Contact Methods
     unset($contactmethods['aim']);
     unset($contactmethods['yim']);
     unset($contactmethods['jabber']);
 
     return $contactmethods;
 }
-add_filter('user_contactmethods','add_remove_contactmethods',10,1);
+add_filter('user_contactmethods','puma_add_remove_contactmethods',10,1);
 
 
 function header_social_link(){
@@ -127,7 +143,7 @@ function header_social_link(){
     $output = '';
     foreach ($socials as $key => $social) {
         if( get_user_meta(1,$social,true) != '' ) { $output .= '<span class="social-link"><a href="' . get_user_meta(1,$social,true) .'" target="_blank"><svg class="icon icon-' . $social . '" height="16" width="16" viewBox="0 0 16 16"><use xlink:href="' . get_template_directory_uri() . '/static/img/svgdefs.svg#icon-' . $social . '"></use></svg></a></span>';
-        } 
+        }
     }
     $output .= '<span class="social-link"><a href="' . get_bloginfo('rss2_url'). '" target="_blank"><svg class="icon icon-feed2" height="16" width="16" viewBox="0 0 16 16"><use xlink:href="' . get_template_directory_uri() . '/static/img/svgdefs.svg#icon-feed2"></use></svg></a></span>';
     return $output;
@@ -254,10 +270,10 @@ function ajax_comment_err($a) {
 function puma_comment_nav() {
     // Are there comments to navigate through?
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
-    ?>
-    <nav class="navigation comment-navigation u-textAlignCenter" role="navigation">
-        <div class="nav-links">
-            <?php
+        ?>
+        <nav class="navigation comment-navigation u-textAlignCenter" role="navigation">
+            <div class="nav-links">
+                <?php
                 if ( $prev_link = get_previous_comments_link(  '上一页' ) ) :
                     printf( '<div class="nav-previous">%s</div>', $prev_link );
                 endif;
@@ -265,10 +281,10 @@ function puma_comment_nav() {
                 if ( $next_link = get_next_comments_link( '下一页' ) ) :
                     printf( '<div class="nav-next">%s</div>', $next_link );
                 endif;
-            ?>
-        </div><!-- .nav-links -->
-    </nav><!-- .comment-navigation -->
-    <?php
+                ?>
+            </div><!-- .nav-links -->
+        </nav><!-- .comment-navigation -->
+        <?php
     endif;
 }
 
