@@ -1,12 +1,15 @@
 <?php get_header();?>
     <main class="main-content">
+        <header class="archive-header u-textAlignCenter">
+            <?php
+            the_archive_title( '<h1 class="archive-title">', '</h1>' );
+            the_archive_description( '<div class="taxonomy-description">', '</div>' );
+            ?>
+        </header>
         <section class="blockGroup">
             <?php if (have_posts()):
-
                 while (have_posts()): the_post();
-
                     get_template_part('content', 'list');
-
                 endwhile;
             endif;?>
         </section>
@@ -18,6 +21,6 @@
                     'mid_size' => 2
                 ) );?>
             </div>
-            </div>
+        </div>
     </main>
 <?php get_footer();?>

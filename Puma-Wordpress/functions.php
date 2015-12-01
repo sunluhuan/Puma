@@ -1,7 +1,7 @@
 <?php
 
 
-function pure_setup() {
+function puma_setup() {
     register_nav_menu( 'angela', '主题菜单' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'html5', array(
@@ -9,9 +9,9 @@ function pure_setup() {
     ) );
 }
 
-add_action( 'after_setup_theme', 'pure_setup' );
+add_action( 'after_setup_theme', 'puma_setup' );
 
-function cheetah_load_static_files(){
+function puma_load_static_files(){
 	$dir = get_template_directory_uri() . '/static/';
 	wp_enqueue_style('puma', $dir . 'css/main.css' , array(), '20150726' , 'screen');
     wp_enqueue_script( 'puma', $dir . 'js/main.js' , array( 'jquery' ), '20141010', true );
@@ -20,9 +20,9 @@ function cheetah_load_static_files(){
     ) );
 }
 
-add_action( 'wp_enqueue_scripts', 'cheetah_load_static_files' );
+add_action( 'wp_enqueue_scripts', 'puma_load_static_files' );
 
-function twentythirteen_wp_title( $title, $sep ) {
+function puma_wp_title( $title, $sep ) {
 	global $paged, $page;
 
 	if ( is_feed() )
@@ -38,11 +38,11 @@ function twentythirteen_wp_title( $title, $sep ) {
 
 	// Add a page number if necessary.
 	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'twentythirteen' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( 'Page %s', max( $paged, $page ) );
 
 	return $title;
 }
-add_filter( 'wp_title', 'twentythirteen_wp_title', 10, 2 );
+add_filter( 'wp_title', 'puma_wp_title', 10, 2 );
 
 function get_ssl_avatar($avatar) {
     $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cn.gravatar.com", $avatar);
@@ -270,88 +270,4 @@ function puma_comment_nav() {
     </nav><!-- .comment-navigation -->
     <?php
     endif;
-}
-
-function fa_load_postlist_button(){
-    global $wp_query;
-    if (2 > $GLOBALS["wp_query"]->max_num_pages) {
-        return;
-    } else {
-        $button = '<button id="fa-loadmore" class="button button--primary button--more"';
-        if (is_category()) $button .= ' data-category="' . get_query_var('cat') . '"';
-
-        if (is_author()) $button .=  ' data-author="' . get_query_var('author') . '"';
-
-        if (is_tag()) $button .=  ' data-tag="' . get_query_var('tag') . '"';
-
-        if (is_search()) $button .=  ' data-search="' . get_query_var('s') . '"';
-
-        if (is_date() ) $button .=  ' data-year="' . get_query_var('year') . '" data-month="' . get_query_var('monthnum') . '" data-day="' . get_query_var('day') . '"';
-
-        $button .= ' data-paged="2" data-action="fa_load_postlist" data-total="' . $GLOBALS["wp_query"]->max_num_pages . '">load more</button>';
-
-        return $button;
-    }
-}
-
-
-function puma_post_section(){
-    global $post;
-    $post_section = '<article class="block block--inset block--list"><h2 class="block-title post-featured"><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>
-    <div class="block-postMetaWrap u-textAlignCenter">
-        <time>' . get_the_date('Y/m/d') . '</time>
-    </div>
-    <div class="block-snippet block-snippet--subtitle grap" itemprop="about">';
-
-    if(has_post_thumbnail()) {
-        $post_section .= '<p class="with-img">' . get_the_post_thumbnail() . '</p><p>' . mb_strimwidth(strip_shortcodes(strip_tags(apply_filters('the_content', $post->post_content))), 0, 220,"...") . '</p>';
-    } else {
-        $post_section .= apply_filters('the_content', get_the_content(''));
-    }
-
-    $post_section .= '</div>
-    <div class="block-footer">
-        By ' . get_the_author() .' . In ' . get_the_category_list(',') .'.
-        <div class="block-footer-inner">';
-    if(function_exists('wpl_get_like_count')) $post_section .= wpl_get_like_count(get_the_ID()) . ' likes . ';
-    $post_section .= get_comments_number() . ' replies.</div></div></article>';
-    return $post_section;
-}
-
-add_action('wp_ajax_nopriv_fa_load_postlist', 'fa_load_postlist_callback');
-add_action('wp_ajax_fa_load_postlist', 'fa_load_postlist_callback');
-function fa_load_postlist_callback(){
-    $postlist = '';
-    $paged = $_POST["paged"];
-    $total = $_POST["total"];
-    $category = $_POST["category"];
-    $author = $_POST["author"];
-    $tag = $_POST["tag"];
-    $search = $_POST["search"];
-    $year = $_POST["year"];
-    $month = $_POST["month"];
-    $day = $_POST["day"];
-    $query_args = array(
-        "posts_per_page" => get_option('posts_per_page'),
-        "cat" => $category,
-        "tag" => $tag,
-        "author" => $author,
-        "post_status" => "publish",
-        "post_type" => "post",
-        "paged" => $paged,
-        "s" => $search,
-        "year" => $year,
-        "monthnum" => $month,
-        "day" => $day
-    );
-    $the_query = new WP_Query( $query_args );
-    while ( $the_query->have_posts() ){
-        $the_query->the_post();
-        $postlist .= puma_post_section();
-    }
-    $code = $postlist ? 200 : 500;
-    wp_reset_postdata();
-    $next = ( $total > $paged )  ? ( $paged + 1 ) : '' ;
-    echo json_encode(array('code'=>$code,'postlist'=>$postlist,'next'=> $next));
-    die;
 }

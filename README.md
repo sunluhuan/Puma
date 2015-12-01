@@ -8,7 +8,7 @@
 
 需要安装插件`wp-postlike`,后台直接搜索安装即可。
 
-已更新到1.1.1 版本
+已更新到1.1.2 版本
 
 [更新日志](https://github.com/bigfa/Puma/blob/master/Puma-Wordpress/README.md)
 
