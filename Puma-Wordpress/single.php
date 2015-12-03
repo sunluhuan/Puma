@@ -15,15 +15,15 @@
                     <?php the_content();?>
                 </div>
                 <?php wp_link_pages( array(
-                        'before'      => '<div class="page-links u-textAlignCenter comment-navigation">',
-                        'after'       => '</div>',
-                        'link_before' => '<span class="page-link-item">',
-                        'link_after'  => '</span>',
-                        'pagelink'    => '%',
-                        'separator'   => '<span class="screen-reader-text">, </span>',
-                    ) );?>
+                    'before'      => '<div class="page-links u-textAlignCenter comment-navigation">',
+                    'after'       => '</div>',
+                    'link_before' => '<span class="page-link-item">',
+                    'link_after'  => '</span>',
+                    'pagelink'    => '%',
+                    'separator'   => '<span class="screen-reader-text">, </span>',
+                ) );?>
                 <div class="post--keywords" itemprop="keywords">
-                    <?php echo fa_get_the_term_list( get_the_ID(), 'post_tag' );?>
+                    <?php echo puma_get_the_term_list( get_the_ID(), 'post_tag' );?>
                 </div>
                 <div class="postFooterAction">
                     <?php if(function_exists('wp_postlike')) wp_postlike();?>
