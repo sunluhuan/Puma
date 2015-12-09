@@ -1,17 +1,13 @@
 <?php
 /**
- *
- *
  * @package Puma
  * @author Bigfa
- * @version 1.0.3
+ * @version 1.0.4
  * @link http://fatesinger.com
  */
-
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-
 <main class="main-content">
     <section class="blockGroup">
         <?php while($this->next()): ?>
@@ -33,7 +29,5 @@ $this->need('header.php');
         <?php endwhile; ?>
     </section>
     <?php $this->pageNav('<', '>'); ?>
-</main><!-- end #main-->
-
-
+</main>
 <?php $this->need('footer.php'); ?>

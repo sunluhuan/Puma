@@ -15,8 +15,6 @@
 
     <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('/static/css/main.css'); ?>">
-
-
     <!--[if lt IE 9]>
     <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -72,6 +70,3 @@
             <?php endwhile; ?>
         </ul>
     </nav>
-
-    
-    
