@@ -1,5 +1,5 @@
 <?php
-define('PUMA_VERSION','1.1.5');
+define('PUMA_VERSION','1.1.6');
 
 function puma_setup() {
     register_nav_menu( 'angela', '主题菜单' );
@@ -7,6 +7,7 @@ function puma_setup() {
     add_theme_support( 'html5', array(
         'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
     ) );
+    add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 }
 
 add_action( 'after_setup_theme', 'puma_setup' );
@@ -128,3 +129,32 @@ function header_social_link(){
 }
 
 require get_template_directory() . '/inc/comment-action.php';
+
+function get_the_link_items($id = null){
+    $bookmarks = get_bookmarks('orderby=date&category=' .$id );
+    $output = '';
+    if ( !empty($bookmarks) ) {
+        $output .= '<ul class="link-items fontSmooth">';
+        foreach ($bookmarks as $bookmark) {
+            $output .=  '<li class="link-item"><a class="link-item-inner effect-apollo" href="' . $bookmark->link_url . '" title="' . $bookmark->link_description . '" target="_blank" >'. get_avatar($bookmark->link_notes,64) . '<span class="sitename">'. $bookmark->link_name .'<br>' . $bookmark->link_description . '</span></a></li>';
+        }
+        $output .= '</ul>';
+    } else {
+        $output = '暂无链接。';
+    }
+    return $output;
+}
+
+function get_link_items(){
+    $linkcats = get_terms( 'link_category' );
+    if ( !empty($linkcats) ) {
+        foreach( $linkcats as $linkcat){            
+            $result .=  '<h3 class="link-title">'.$linkcat->name.'</h3>';
+            if( $linkcat->description ) $result .= '<div class="link-description">' . $linkcat->description . '</div>';
+            $result .=  get_the_link_items($linkcat->term_id);
+        }
+    } else {
+        $result = get_the_link_items();
+    }
+    return $result;
+}
